@@ -4,85 +4,166 @@ import (
 	"fmt"
 )
 
-// 1
-type Person struct {
-	Name string
-	Age  int
-}
-
-// 2
-type Book struct {
-	Title, Author string
-	Pages         int
-}
-
-// 3
-type Car struct {
-	Brand string
-	Year  int
-}
-
-//4
-
-// 5
-type Student struct {
-	Name  string
-	Grade int
-}
-
-// 6
-type Cirlce struct {
-	Radius float64
-}
-
 func main() {
+	// var users map[string]string
+	// users = map[string]string{"Sanya": "12341254", "Nikita": "22", "Dimon": "23"}
+	// fmt.Println(users)
+
+	// result, ok := users["Sanya"]
+	// fmt.Println(result, ok)
+
+	// for _, v := range users {
+	// 	if v == "1234" {
+	// 		fmt.Printf("Too easy password User: \n")
+	// 	} else {
+	// 		fmt.Printf("User not found User: \n")
+	// 	}
+	// }
+
+	// if ok {
+	// 	if result == "1234" {
+	// 		fmt.Println("Too easy password")
+	// 	} else {
+	// 		fmt.Println("User not found")
+	// 	}
+	// } else {
+	// 	fmt.Println("Такого ключа нет в словаре")
+	// }
+
+	// fmt.Println(users["Sanya"])
+
+	// users_map := map[string]string{"Sanya": "12341254", "Nikita": "22", "Dimon": "23"}
+	// fmt.Println(reflect.DeepEqual(users, users_map))
+
 	//1
-	user1 := Person{
-		Name: "Tom",
-		Age:  22}
-	fmt.Println(user1.Name, user1.Age)
+	toolUsage := map[string]int{"Go": 3, "VSCode": 5, "Git": 2}
+
+	for k, v := range toolUsage {
+		fmt.Printf("%s использовали столько раз: %d\n", k, v)
+	}
+
 	//2
-	book1 := Book{
-		Title:  "DS",
-		Author: "Hayato",
-		Pages:  100,
+	buildStatus := map[string]bool{"Build": true, "Run": false}
+	if buildStatus["Build"] == true {
+		fmt.Println("Сборка прошла успешно")
+	} else {
+		fmt.Println("Нет сценрия видимо не успешно")
 	}
-	fmt.Println(book1)
+
 	//3
-	car := Car{
-		Brand: "BMW",
-		Year:  26,
-	}
-	carP := &car
-	carP.Year = 25
-	fmt.Println(carP)
+	var UserName string
+	fmt.Println("Введите имя")
+	fmt.Scanln(&UserName)
+	userInfo := map[string]interface{}{"name": UserName, "isLoggendIn": true}
+	fmt.Printf("Пользователь %s вошёл в систему \n", userInfo["name"]) //FIX
 
 	//4
+	cpuLoad := map[int]int{1: 40, 2: 65, 3: 30}
+	maxValue := 0
+	maxCore := 0 //Fix
+	for c, v := range cpuLoad {
+		if maxValue < v {
+			maxValue = v
+			maxCore = c
+		}
+	}
+	fmt.Printf("Самое загруженое ядро %d\n", maxCore)
 
 	//5
-	student1 := Student{
-		Name:  "Tim",
-		Grade: 5,
+	examResult := map[string]int{"name": 94, "name2": 83, "name3": 73}
+	for k, v := range examResult {
+		if 80 <= v {
+			fmt.Printf("Сдал экзамен %s\n", k)
+		} else {
+			fmt.Printf("Не сдал экзамен %s\n", k)
+		}
 	}
-	student2 := Student{
-		Name:  "Bob",
-		Grade: 4,
-	}
-	if student1.Grade > student2.Grade {
-		fmt.Printf("Студент %s получил %d\n", student1.Name, student1.Grade)
-	} else {
-		fmt.Printf("Студент %s получил %d\n", student2.Name, student2.Grade)
-	}
-	//6
-	Cirlce1 := Cirlce{
-		Radius: 50,
-	}
-	fmt.Println(3.14 * Cirlce1.Radius * Cirlce1.Radius)
 
-	user := Person{Name: "Bab", Age: 25}
-	fmt.Println(user)
-}
-func (u Person) incrementAge(addAge int) {
-	u.Age += addAge
-	fmt.Println(u.Name, u.Age)
+	//6
+	word := []string{"go", "is", "fast"}
+	wordLenegth := map[string]int{}
+	for _, v := range word {
+		wordLenegth[v] = len(v)
+	}
+	fmt.Println(wordLenegth)
+
+	//7
+	var nameMenu string
+	menu := map[string]int{"Burger": 2500, "Pizza": 3200, "Tea": 500}
+	fmt.Println("Выберите блюдо: Burger, Pizza, Tea")
+	fmt.Scan(&nameMenu)
+
+	price, ok := menu[nameMenu]
+	if !ok {
+		fmt.Println("Блюдо не найдено")
+	} else {
+		fmt.Println("Цена", price)
+	}
+
+	//8
+	loginAttempts := map[string]int{"admin": 1, "guest": 0}
+	for true {
+		if loginAttempts["admin"] > 2 {
+			fmt.Println("Доступ заблокирован")
+			break
+		} else {
+			fmt.Println("Попытка входа в аккаунт admin")
+			loginAttempts["admin"]++
+		}
+	}
+
+	//9
+	sales := [2][3]int{
+		{1200, 1500, 1700},
+		{900, 1100, 1600},
+	}
+	for i := 0; i < len(sales); i++ {
+		sum := 0
+		for j := 0; j < len(sales[i]); j++ {
+			sum += sales[i][j]
+		}
+		fmt.Printf("Сумма продаж магазина %d: %d\n", i+1, sum)
+	}
+
+	//10
+	number1 := []int{4, 7, 2, 9, 5}
+	numbersStatus2 := make(map[int]string)
+
+	for _, v := range number1 {
+		if v%2 == 0 {
+			numbersStatus2[v] = "even"
+		} else {
+			numbersStatus2[v] = "odd"
+		}
+	}
+
+	fmt.Println(numbersStatus2)
+	//11
+	defaultConfig := map[string]string{"host": "localhost", "port": "8080", "mode": "production"}
+	currentConfig := map[string]string{"host": "localhost", "port": "8080", "mode": "production"}
+	Sovp := true
+	for k, v := range defaultConfig {
+		if currentConfig[k] != v {
+			Sovp = false
+		}
+	}
+	if Sovp {
+		fmt.Println("Конфигурации совпадают")
+	} else {
+		fmt.Println("Конфигурации отличаются")
+	}
+
+	currentConfig["mode"] = "debug"
+
+	Sovp = true //FIX
+	for k, v := range defaultConfig {
+		if currentConfig[k] != v {
+			Sovp = false
+		}
+	}
+	if Sovp {
+		fmt.Println("Конфигурации совпадают")
+	} else {
+		fmt.Println("Конфигурации отличаются")
+	}
 }
