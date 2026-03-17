@@ -1,90 +1,88 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+// 1
+type Person struct {
+	Name string
+	Age  int
+}
+
+// 2
+type Book struct {
+	Title, Author string
+	Pages         int
+}
+
+// 3
+type Car struct {
+	Brand string
+	Year  int
+}
+
+//4
+
+// 5
+type Student struct {
+	Name  string
+	Grade int
+}
+
+// 6
+type Cirlce struct {
+	Radius float64
+}
 
 func main() {
 	//1
-	run := [...]string{"Бег", "Берпи"}
-	walk := [...]string{"Ходьба", "Ходьба в горку"}
-
-	fmt.Println("Бег", len(run))
-	fmt.Println("Ходьба", len(walk))
-
+	user1 := Person{
+		Name: "Tom",
+		Age:  22}
+	fmt.Println(user1.Name, user1.Age)
 	//2
-	subjectsList := [...]string{"Химия", "География", "Физика"}
-	fmt.Println(subjectsList[0], subjectsList[len(subjectsList)-1])
-	subjectsList[1] = "Биология"
-	fmt.Println(subjectsList)
-
+	book1 := Book{
+		Title:  "DS",
+		Author: "Hayato",
+		Pages:  100,
+	}
+	fmt.Println(book1)
 	//3
-	M := [...]string{"Tom", "35", "New York"}
-	name := M[0]
-	age := M[1]
-	home := M[2]
-	fmt.Println(name, age, home)
+	car := Car{
+		Brand: "BMW",
+		Year:  26,
+	}
+	carP := &car
+	carP.Year = 25
+	fmt.Println(carP)
 
 	//4
-	numbersList := [...]int{1, 2, 3, 4, 5}
-	s := 0
-	for i := 0; i < len(numbersList); i++ {
-		if numbersList[i] == 3 {
-			s++
-		}
-	}
-	if s == 1 {
-		fmt.Println("Число 3 есть в массиве")
-	} else {
-		fmt.Println("Число 3 отсутвует в массиве")
-	}
 
 	//5
-	friendList := [...]string{"Александр", "Никита"}
-	point := false
-	for _, friend := range friendList {
-		if friend == "Bekbolat" {
-			point = true
-		}
+	student1 := Student{
+		Name:  "Tim",
+		Grade: 5,
 	}
-	if point == true {
-		fmt.Println("Yes")
+	student2 := Student{
+		Name:  "Bob",
+		Grade: 4,
+	}
+	if student1.Grade > student2.Grade {
+		fmt.Printf("Студент %s получил %d\n", student1.Name, student1.Grade)
 	} else {
-		fmt.Println("No")
+		fmt.Printf("Студент %s получил %d\n", student2.Name, student2.Grade)
 	}
-
 	//6
-	firstList := [...]int{1, 2, 3}
-	secondList := [...]int{1, 2, 3}
-	count := 0
-	for i := 0; i < len(firstList); i++ {
-		if firstList[i] == secondList[i] { //FIXED
-			count++
-		}
+	Cirlce1 := Cirlce{
+		Radius: 50,
 	}
-	if count == len(firstList) {
-		fmt.Println("Массивы равны")
-	} else {
-		fmt.Println("Массивы не равны")
-	}
+	fmt.Println(3.14 * Cirlce1.Radius * Cirlce1.Radius)
 
-	//7
-	myWishList := [...]string{"Скрепка", "Пакет БМВ"}
-	friendsWishList := [...]string{"Булавка", "Транбалон"}
-	registrationList := [len(myWishList) + len(friendsWishList)]string{}
-	index := 0
-	for j := 0; j < len(myWishList); j++ {
-		registrationList[index] = myWishList[j]
-		index++
-	}
-	for j := 0; j < len(friendsWishList); j++ {
-		registrationList[index] = friendsWishList[j]
-		index++
-	}
-	fmt.Println(registrationList)
-
-	//8
-	toyList := [...]string{"car", "doll", "ball"}
-	testToyList := toyList
-	testToyList[1] = "boat"
-	fmt.Println(toyList)
-	fmt.Println(testToyList)
+	user := Person{Name: "Bab", Age: 25}
+	fmt.Println(user)
+}
+func (u Person) incrementAge(addAge int) {
+	u.Age += addAge
+	fmt.Println(u.Name, u.Age)
 }
