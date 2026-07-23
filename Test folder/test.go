@@ -13,126 +13,82 @@ func main() {
 	ex5()
 	ex6()
 	ex7()
-	ex8()
-	ex9()
 }
+
 func ex1() {
-	temperature := rand.Intn(21) - 20
-	fmt.Println(temperature)
-	if temperature < 0 {
-		fmt.Println("Холодно")
-	} else if temperature <= 20 && temperature >= 0 {
-		fmt.Println("Тепло")
-	} else {
-		fmt.Println("Жарко")
+	for i := 1; i <= 20; i++ {
+		fmt.Println(i)
 	}
 	fmt.Println("Ex1 End")
 }
 func ex2() {
-	score := rand.Intn(101)
-	fmt.Println(score)
-	if score >= 90 {
-		fmt.Println("Отлично")
-	} else if 70 <= score && 89 >= score {
-		fmt.Println("Хорошо")
-	} else if 50 <= score && 69 >= score {
-		fmt.Println("Удовлетворительно")
-	} else if 50 > score {
-		fmt.Println("Не сдал")
+	sum := 0
+	for i := 0; i <= 100; i++ {
+		sum += i
 	}
+	fmt.Println(sum)
 	fmt.Println("Ex2 End")
 }
 
 func ex3() {
-	hour := rand.Intn(24)
-	fmt.Println(hour)
-	switch {
-	case hour >= 0 && hour <= 5:
-		fmt.Println("Ночь")
-	case hour >= 6 && hour <= 11:
-		fmt.Println("Утро")
-	case hour >= 12 && hour <= 17:
-		fmt.Println("День")
-	case hour >= 18 && hour <= 23:
-		fmt.Println("Вечер")
+	number := rand.Intn(9) + 1
+	fmt.Println(number)
+	for i := 1; i < 10; i++ {
+		fmt.Println(number * i)
 	}
 	fmt.Println("Ex3 End")
 }
 
 func ex4() {
-	number := 0
-	fmt.Scan(&number)
-	if number&2 == 0 {
-		fmt.Println("Чётное число")
-	} else {
-		fmt.Println("Не чётное")
+	n := rand.Intn(100)
+	s := []int{}
+	fmt.Println(n)
+	for i := 1; i <= n; i++ {
+		v := i % 3
+		if v == 0 {
+			s = append(s, i)
+		}
 	}
+	fmt.Println(s)
 	fmt.Println("Ex4 End")
 }
 
 func ex5() {
-	var day string
-	fmt.Scan(&day)
-	switch day {
-	case "Monday", "Tuesday", "Wednesday", "Thursday", "Friday":
-		fmt.Println("Будний день")
-	case "Saturday", "Sunday":
-		fmt.Println("Выходной день")
-	default:
-		fmt.Println("Некорректный день")
+	n := rand.Intn(1000)
+	fmt.Println(n)
+	sum := 0
+	for i := 1; i < n; i++ {
+		n /= 10
+		sum += 1
 	}
+	fmt.Println(sum)
 	fmt.Println("Ex5 End")
 }
 
 func ex6() {
-	balance := rand.Intn(11) - 10
-	if balance <= 0 {
-		fmt.Println("Баланс положительный")
-	} else {
-		fmt.Println("Баланс отрицательный")
+	text := "TEST"
+	for i := 0; i < len(text); i++ {
+		fmt.Println(string(text[i]))
 	}
 	fmt.Println("Ex6 End")
 }
 
 func ex7() {
-	age := rand.Intn(22)
-	if 0 <= age && age >= 12 {
-		fmt.Println("Ребёнок")
-	} else if 13 <= age && age >= 17 {
-		fmt.Println("Подросток")
-	} else {
-		fmt.Println("Взрослый")
+	balance := 3000
+	for true {
+		fmt.Println("Введите 1.2.3")
+		a := 0
+		fmt.Scan(&a)
+
+		if a == 1 {
+			fmt.Println(balance)
+		} else if a == 2 {
+			balance += 500
+		} else if a == 3 {
+			balance -= 200
+		} else if a == 0 {
+			break
+		}
 	}
 	fmt.Println("Ex7 End")
-}
-
-func ex8() {
-	var command string
-	fmt.Scan(&command)
-	switch command {
-	case "start":
-		fmt.Println("Start")
-	case "stop":
-		fmt.Println("Stop")
-	case "restart":
-		fmt.Println("Restart")
-	default:
-		fmt.Println("Неизвестная команда")
-	}
-	fmt.Println("Ex8 End")
-}
-
-func ex9() {
-	garde := rand.Intn(5) + 1
-	switch garde {
-	case 5:
-		fmt.Println("A")
-	case 4:
-		fmt.Println("B")
-	case 3:
-		fmt.Println("C")
-	case 2:
-		fmt.Println("F")
-	}
-	fmt.Println("Ex9 End")
 }
